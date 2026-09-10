@@ -1,0 +1,20 @@
+# Only server.mjs, web/ and each app's dist/ are ever COPYed. Everything below
+# would otherwise be shipped to the daemon as build context for nothing — the
+# spellbook's source data alone is a couple of megabytes.
+.git
+.gitmodules
+apps/*/.git
+apps/*/src
+apps/*/tools
+apps/*/data
+apps/*/bin
+apps/*/node_modules
+apps/*/pf2e-data
+apps/*/*.zip
+apps/*/*.md
+node_modules
+tools
+*.log
+README.md
+Dockerfile
+.dockerignore

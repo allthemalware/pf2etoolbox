@@ -1,0 +1,9 @@
+[submodule "apps/pf2epartytracker"]
+	path = apps/pf2epartytracker
+	url = https://github.com/TheWhyteWolf/pf2epartytracker.git
+[submodule "apps/pf2espellcards"]
+	path = apps/pf2espellcards
+	url = https://github.com/TheWhyteWolf/pf2espellcards.git
+[submodule "apps/pf2eprimer"]
+	path = apps/pf2eprimer
+	url = https://github.com/TheWhyteWolf/pf2eprimer.git
