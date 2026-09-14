@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * PF2e Toolbox — the three tools on one origin, behind one name.
+ * PF2e Toolbox — the four tools on one origin, behind one name.
  *
  * Each tool is already a self-contained dist/ that needs no server beyond
  * something handing back files, so this is a static server and nothing else:
@@ -18,7 +18,7 @@
  *      *document* URL. Served at /tracker/ that is /tracker/sw.js, scope
  *      /tracker/, and no app can see a sibling. Served at /tracker — no slash —
  *      it resolves to /sw.js, scope /, and that worker then intercepts
- *      navigations for all three apps while precaching the wrong shell. It is
+ *      navigations for all four apps while precaching the wrong shell. It is
  *      silent, it is sticky, and a redirect is the whole fix.
  *
  *   2. /pf2epartytracker/ redirects to /tracker/. The primer links its siblings
@@ -48,6 +48,7 @@ const APPS = [
   { mount: '/tracker/', repo: 'pf2epartytracker', alias: '/pf2epartytracker/', name: 'PF2e Party Tracker' },
   { mount: '/spellbook/', repo: 'pf2espellcards', alias: '/pf2espellcards/', name: 'PF2e Spellbook' },
   { mount: '/primer/', repo: 'pf2eprimer', alias: '/pf2eprimer/', name: 'PF2e Primer' },
+  { mount: '/subsystems/', repo: 'pf2esubsystems', alias: '/pf2esubsystems/', name: 'PF2e Subsystems' },
 ];
 
 const rootOf = (app) => resolve(APPS_DIR, app.repo, 'dist');
@@ -131,14 +132,15 @@ function route(url, res) {
 
 /* -------------------------------------------------------------------- main */
 
-const USAGE = `pf2e-toolbox — the three PF2e tools on one origin
+const USAGE = `pf2e-toolbox — the four PF2e tools on one origin
 
   node server.mjs [--port 6670] [--host 0.0.0.0]
 
 Environment: PF2E_PORT, PF2E_HOST.
 
-Serves a landing page at /, and the tools at /tracker/, /spellbook/ and
-/primer/ from the committed dist/ of each submodule under apps/.
+Serves a landing page at /, and the tools at /tracker/, /spellbook/,
+/primer/ and /subsystems/ from the committed dist/ of each submodule
+under apps/.
 `;
 
 function parseArgs(argv) {

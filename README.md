@@ -1,6 +1,6 @@
 # PF2e Toolbox
 
-The three Pathfinder 2e tools behind one name on the tailnet, so there's an
+The four Pathfinder 2e tools behind one name on the tailnet, so there's an
 address you can send a player.
 
 ```
@@ -8,6 +8,7 @@ https://pf2e.pangolin-amberjack.ts.net/            the landing page
                                       /primer/     PF2e Primer      — new players
                                       /spellbook/  PF2e Spellbook   — players
                                       /tracker/    PF2e Party Tracker — GMs
+                                      /subsystems/ PF2e Subsystems  — GMs
 ```
 
 Each tool is already a self-contained `dist/index.html`, so this repo is a
@@ -20,6 +21,7 @@ No dependencies, no build step, no backend.
 apps/pf2epartytracker/   → github.com/TheWhyteWolf/pf2epartytracker
 apps/pf2espellcards/     → github.com/TheWhyteWolf/pf2espellcards
 apps/pf2eprimer/         → github.com/TheWhyteWolf/pf2eprimer
+apps/pf2esubsystems/     → github.com/TheWhyteWolf/pf2esubsystems
 ```
 
 Each is pinned at a commit, and only its committed `dist/` is served — the apps
@@ -35,16 +37,19 @@ git submodule update --remote apps/pf2eprimer
 git commit -am "Bump the primer"
 ```
 
-> **Before this repo can be cloned anywhere else,** all three app repos need
-> their current `main` pushed to GitHub — the submodules are pinned to commits
-> that only exist locally right now, and `pf2eprimer` has no remote at all yet.
+> **Before this repo can be cloned anywhere else,** two of the four app repos
+> need creating and pushing. `pf2epartytracker` and `pf2espellcards` are on
+> GitHub; **`pf2eprimer` and `pf2esubsystems` are not** — their `.gitmodules`
+> URLs are where they are *going* to live, and until they exist a recursive
+> clone of this repo fails on both. Every submodule is also pinned to a commit
+> that may be local-only, so push `main` in each before relying on the pin.
 
 ## Run it
 
 ```sh
 node server.mjs                 # http://localhost:6670
 node server.mjs --port 8000
-node tools/test.mjs             # 86 assertions against a live server
+node tools/test.mjs             # 106 assertions against a live server
 ```
 
 ## The two routing rules that matter
@@ -53,7 +58,7 @@ node tools/test.mjs             # 86 assertions against a live server
 `navigator.serviceWorker.register("sw.js")`, which resolves against the
 *document* URL. At `/tracker/` that gives `/tracker/sw.js` — scope `/tracker/`,
 and no app can see a sibling. At `/tracker`, no slash, it resolves to `/sw.js`
-— scope `/`, and that one worker then intercepts navigations for all three apps
+— scope `/`, and that one worker then intercepts navigations for all four apps
 while precaching the wrong shell. It fails silently and it sticks, so the
 redirect is not cosmetic.
 
@@ -69,10 +74,10 @@ URL, and their service workers precache `"./…"` against the worker's URL.
 
 Browser storage is per **origin**, so a party built at `http://localhost:8725`
 does not follow you here — this address starts empty. Each tool has an
-export/import escape hatch; that's the migration path. From here on the three
+export/import escape hatch; that's the migration path. From here on the four
 share one origin's storage budget, and clearing site data for one clears all
-three. Their keys don't collide (`pf2ePartyTracker.v1`, `pf2eSpellbook.v3`,
-`pf2ePrimer.v1`), so nothing overwrites anything.
+four. Their keys don't collide (`pf2ePartyTracker.v1`, `pf2eSpellbook.v3`,
+`pf2ePrimer.v1`, `pf2eSubsystems.v1`), so nothing overwrites anything.
 
 ## Deployment
 

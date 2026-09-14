@@ -1,4 +1,4 @@
-# The toolbox is one file of stdlib Node serving four static directories — no
+# The toolbox is one file of stdlib Node serving five static directories — no
 # dependencies, so no install step and no build stage.
 #
 # Only each app's dist/ is copied in, not the whole submodule: the apps' sources
@@ -17,6 +17,7 @@ COPY web/ ./web/
 COPY apps/pf2epartytracker/dist/ ./apps/pf2epartytracker/dist/
 COPY apps/pf2espellcards/dist/   ./apps/pf2espellcards/dist/
 COPY apps/pf2eprimer/dist/       ./apps/pf2eprimer/dist/
+COPY apps/pf2esubsystems/dist/   ./apps/pf2esubsystems/dist/
 
 USER pf2e
 

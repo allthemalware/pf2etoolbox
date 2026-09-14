@@ -7,3 +7,6 @@
 [submodule "apps/pf2eprimer"]
 	path = apps/pf2eprimer
 	url = https://github.com/TheWhyteWolf/pf2eprimer.git
+[submodule "apps/pf2esubsystems"]
+	path = apps/pf2esubsystems
+	url = https://github.com/TheWhyteWolf/pf2esubsystems.git

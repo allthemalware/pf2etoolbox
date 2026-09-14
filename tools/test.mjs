@@ -3,7 +3,7 @@
 
    The redirects are the point. Getting /tracker (no slash) wrong doesn't 404 —
    it quietly registers a service worker at the origin root that hijacks all
-   three apps, and you find out a week later when someone's spellbook is empty
+   four apps, and you find out a week later when someone's spellbook is empty
    on a train. So these assert the status codes, not just the bodies. */
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
@@ -58,7 +58,7 @@ try {
     eq(r.headers.get('content-type'), 'text/html; charset=utf-8', 'as HTML');
     const body = await r.text();
     ok(body.includes('PF2e Toolbox'), 'with the toolbox title');
-    for (const href of ['primer/', 'spellbook/', 'tracker/']) {
+    for (const href of ['primer/', 'spellbook/', 'tracker/', 'subsystems/']) {
       ok(body.includes(`href="${href}"`), `links to ${href} with a trailing slash`);
     }
   }
@@ -70,6 +70,7 @@ try {
     ['/tracker/', 'PF2e Party Tracker'],
     ['/spellbook/', 'PF2e Spellbook'],
     ['/primer/', 'PF2e Primer'],
+    ['/subsystems/', 'PF2e Subsystems'],
   ]) {
     const r = await get(mount);
     eq(r.status, 200, `GET ${mount} serves the app`);
@@ -83,6 +84,7 @@ try {
     ['/tracker', '/tracker/'],
     ['/spellbook', '/spellbook/'],
     ['/primer', '/primer/'],
+    ['/subsystems', '/subsystems/'],
   ]) {
     const r = await get(from);
     eq(r.status, 301, `${from} redirects`);
@@ -94,6 +96,8 @@ try {
     ['/pf2epartytracker/', '/tracker/'],
     ['/pf2espellcards/', '/spellbook/'],
     ['/pf2eprimer/', '/primer/'],
+    ['/pf2esubsystems/', '/subsystems/'],
+    ['/pf2esubsystems', '/subsystems/'],
     ['/pf2epartytracker', '/tracker/'],
     ['/pf2espellcards/index.html', '/spellbook/index.html'],
   ]) {
@@ -107,6 +111,7 @@ try {
     ['/tracker/', 'pf2e-party-tracker-'],
     ['/spellbook/', 'pf2e-spellbook-'],
     ['/primer/', 'pf2e-primer-'],
+    ['/subsystems/', 'pf2e-subsystems-'],
   ]) {
     const r = await get(mount + 'sw.js');
     eq(r.status, 200, `${mount}sw.js is served`);
