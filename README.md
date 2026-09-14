@@ -37,12 +37,19 @@ git submodule update --remote apps/pf2eprimer
 git commit -am "Bump the primer"
 ```
 
-> **Before this repo can be cloned anywhere else,** two of the four app repos
-> need creating and pushing. `pf2epartytracker` and `pf2espellcards` are on
-> GitHub; **`pf2eprimer` and `pf2esubsystems` are not** — their `.gitmodules`
-> URLs are where they are *going* to live, and until they exist a recursive
-> clone of this repo fails on both. Every submodule is also pinned to a commit
-> that may be local-only, so push `main` in each before relying on the pin.
+> **A recursive clone does not work yet.** All four app repos exist on GitHub
+> now, and `pf2eprimer` and `pf2esubsystems` are pushed with their pins
+> resolving. The other two are pinned to commits that were never pushed:
+>
+> | submodule | state |
+> |---|---|
+> | `pf2eprimer` | pushed, pin resolves |
+> | `pf2esubsystems` | pushed, pin resolves |
+> | `pf2epartytracker` | 1 local commit unpushed — clean fast-forward |
+> | `pf2espellcards` | diverged: 2 local commits, 1 remote commit (`FUNDING.yml`) |
+>
+> Until those two are pushed, `git clone --recurse-submodules` fails on them.
+> Check with `git submodule status` against each repo's remote tip.
 
 ## Run it
 
