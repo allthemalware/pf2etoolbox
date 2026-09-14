@@ -4,11 +4,11 @@ The four Pathfinder 2e tools behind one name on the tailnet, so there's an
 address you can send a player.
 
 ```
-https://pf2e.pangolin-amberjack.ts.net/            the landing page
-                                      /primer/     PF2e Primer      — new players
-                                      /spellbook/  PF2e Spellbook   — players
-                                      /tracker/    PF2e Party Tracker — GMs
-                                      /subsystems/ PF2e Subsystems  — GMs
+https://pf2e.<your-tailnet>.ts.net/            the landing page
+                                  /primer/     PF2e Primer      — new players
+                                  /spellbook/  PF2e Spellbook   — players
+                                  /tracker/    PF2e Party Tracker — GMs
+                                  /subsystems/ PF2e Subsystems  — GMs
 ```
 
 Each tool is already a self-contained `dist/index.html`, so this repo is a
@@ -28,7 +28,7 @@ Each is pinned at a commit, and only its committed `dist/` is served — the app
 build themselves in their own repos, and nothing is rebuilt here.
 
 ```sh
-git clone --recurse-submodules <this repo>
+git clone --recurse-submodules https://github.com/TheWhyteWolf/pf2etoolbox.git
 # or, in an existing clone:
 git submodule update --init --recursive
 
@@ -36,20 +36,6 @@ git submodule update --init --recursive
 git submodule update --remote apps/pf2eprimer
 git commit -am "Bump the primer"
 ```
-
-> **A recursive clone does not work yet.** All four app repos exist on GitHub
-> now, and `pf2eprimer` and `pf2esubsystems` are pushed with their pins
-> resolving. The other two are pinned to commits that were never pushed:
->
-> | submodule | state |
-> |---|---|
-> | `pf2eprimer` | pushed, pin resolves |
-> | `pf2esubsystems` | pushed, pin resolves |
-> | `pf2epartytracker` | 1 local commit unpushed — clean fast-forward |
-> | `pf2espellcards` | diverged: 2 local commits, 1 remote commit (`FUNDING.yml`) |
->
-> Until those two are pushed, `git clone --recurse-submodules` fails on them.
-> Check with `git submodule status` against each repo's remote tip.
 
 ## Run it
 
