@@ -18,17 +18,17 @@ No dependencies, no build step, no backend.
 ## The apps are submodules
 
 ```
-apps/pf2epartytracker/   → github.com/TheWhyteWolf/pf2epartytracker
-apps/pf2espellcards/     → github.com/TheWhyteWolf/pf2espellcards
-apps/pf2eprimer/         → github.com/TheWhyteWolf/pf2eprimer
-apps/pf2esubsystems/     → github.com/TheWhyteWolf/pf2esubsystems
+apps/pf2epartytracker/   → github.com/allthemalware/pf2epartytracker
+apps/pf2espellcards/     → github.com/allthemalware/pf2espellcards
+apps/pf2eprimer/         → github.com/allthemalware/pf2eprimer
+apps/pf2esubsystems/     → github.com/allthemalware/pf2esubsystems
 ```
 
 Each is pinned at a commit, and only its committed `dist/` is served — the apps
 build themselves in their own repos, and nothing is rebuilt here.
 
 ```sh
-git clone --recurse-submodules https://github.com/TheWhyteWolf/pf2etoolbox.git
+git clone --recurse-submodules https://github.com/allthemalware/pf2etoolbox.git
 # or, in an existing clone:
 git submodule update --init --recursive
 
