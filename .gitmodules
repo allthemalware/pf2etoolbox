@@ -1,12 +1,12 @@
 [submodule "apps/pf2epartytracker"]
 	path = apps/pf2epartytracker
-	url = https://github.com/TheWhyteWolf/pf2epartytracker.git
+	url = https://github.com/allthemalware/pf2epartytracker.git
 [submodule "apps/pf2espellcards"]
 	path = apps/pf2espellcards
-	url = https://github.com/TheWhyteWolf/pf2espellcards.git
+	url = https://github.com/allthemalware/pf2espellcards.git
 [submodule "apps/pf2eprimer"]
 	path = apps/pf2eprimer
-	url = https://github.com/TheWhyteWolf/pf2eprimer.git
+	url = https://github.com/allthemalware/pf2eprimer.git
 [submodule "apps/pf2esubsystems"]
 	path = apps/pf2esubsystems
-	url = https://github.com/TheWhyteWolf/pf2esubsystems.git
+	url = https://github.com/allthemalware/pf2esubsystems.git
